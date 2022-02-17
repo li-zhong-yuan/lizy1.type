@@ -82,6 +82,10 @@ int main()
         /// _D (decay)
         static_assert(_s<_D<const volatile A &>, A  >::value);
         static_assert(_s<_D<A[3]              >, A *>::value);
+        /// _Uc (remove const)
+        static_assert(_s<_Uc<const A>, A>::value);
+        /// _Ucr (remove const ref)
+        static_assert(_s<_Ucr<const A &>, A>::value);
         /// _Ur (remove ref)
         static_assert(_s<_Ur<const volatile A & >, const volatile A>::value);
         static_assert(_s<_Ur<const volatile A &&>, const volatile A>::value);

@@ -158,6 +158,14 @@ namespace lizy1::type {
     template<class T> using _D = std::decay_t<T>;
 
 
+    /// _Uc (Remove Const)
+    template<class T> using _Uc = std::remove_const_t<T>;
+
+
+    /// _Ucr (Remove Const Ref)
+    template<class T> using _Ucr = std::remove_const_t<std::remove_reference_t<T>>;
+
+
     /// _Ur (Remove Ref)
     template<class T> using _Ur = std::remove_reference_t<T>;
 
