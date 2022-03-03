@@ -156,6 +156,8 @@ static_assert(_s<
 >::value);
 /// _Range (integer range)
 static_assert(_s<_Range<4, 9>, _Is<4, 5, 6, 7, 8>>::value);
+/// _Sz (Size of Parameters)
+static_assert(_Sz<std::tuple<int, int, long>>::value == 3);
 ```
 
 ### Concept
@@ -175,6 +177,9 @@ static_assert( Complete<int()>);
 // static_assert(!Complete<D>);     // ok, but testing an incomplete type leads to
                                     // another static assertion failure inside Complete<...>
 static_assert(!Complete<void >);
+/// FunctionPrototype
+static_assert( FunctionPrototype<void(int)>);
+static_assert(!FunctionPrototype<int>);
 /// NonCvref
 static_assert( NonCvref<A         >);
 static_assert(!NonCvref<const A   >);

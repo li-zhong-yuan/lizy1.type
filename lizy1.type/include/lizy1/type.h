@@ -229,6 +229,17 @@ namespace lizy1::type {
     template<int i, int j> using _Range = typename impl_type::__Range<i, j, _Is<>>::type;
 
 
+    namespace impl_type {
+        template<class P> struct __Sz;
+        template<template<class...> class C, class... Ts> struct __Sz<C<Ts...>> :_i<sizeof...(Ts)> {};
+        template<template<int...> class C, int... is> struct __Sz<C<is...>> :_i<sizeof...(is)> {};
+    }
+
+
+    /// _Sz (Size of Parameters)
+    template<class P> using _Sz = _i<impl_type::__Sz<P>::value>;
+
+
 }
 
 
@@ -261,6 +272,17 @@ namespace lizy1::type {
     //  require T is complete
     //  note static_assert(false) on test fail, except testing the type "void"
     template<class T> concept Complete = _c<T>::value;
+
+
+    namespace impl_type {
+        template<class Fn> struct _FunctionPrototype :_f {};
+        template<class Ret, class... Params> struct _FunctionPrototype<Ret(Params...)> :_t {};
+    }
+
+
+    /// FunctionPrototype
+    //  require Fn can be written as Ret(Params...)
+    template<class Fn> concept FunctionPrototype = impl_type::_FunctionPrototype<Fn>::value;
 
 
     /// NonCvref
