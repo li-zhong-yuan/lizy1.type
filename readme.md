@@ -22,7 +22,7 @@ This library defines some compile-time utilities to query or modify the properti
 
 **Compatibility Mode**: AnyNewerVersion
 
-**Targets List**: lizy1.type
+**Target List**: lizy1.type
 
 ### Interface lizy1.type
 
